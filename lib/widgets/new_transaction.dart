@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:personal_expenses_tracker/widgets/transaction_list.dart';
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
    final Function addTx;
-  final titleContoller=TextEditingController();
-  final amountController=TextEditingController();
+
   NewTransaction(this.addTx);
+
+  @override
+  State<NewTransaction> createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleContoller=TextEditingController();
+
+  final amountController=TextEditingController();
 
   void submitData(){
     final enteredTitle=titleContoller.text;
@@ -13,7 +21,12 @@ class NewTransaction extends StatelessWidget {
     if(enteredTitle.isEmpty || enteredAmount<=0){
       return;
     }
-    addTx(titleContoller.text,double.parse(amountController.text));
+    widget.addTx(
+      enteredTitle,
+    enteredAmount,
+     );
+
+    Navigator.of(context).pop();
   }
 
   @override

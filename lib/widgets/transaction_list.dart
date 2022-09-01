@@ -11,7 +11,15 @@ class TransactionList extends StatelessWidget {
     return  Container(
      // height: 479,
       height: 300,
-      child: ListView.builder(
+      child: transaction.isEmpty ? Column(children: [
+        Text("No transactions added yet!",
+        //style: Theme.of(context).textTheme.headline6,
+        ),
+        Container(
+          height: 200,
+            child: Image.asset('images/waiting.png',fit: BoxFit.cover,)
+        ),
+      ],):ListView.builder(
         itemBuilder: (context, index) {
           return Card(
             elevation: 5,
@@ -24,7 +32,7 @@ class TransactionList extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Colors.purple,
+                        color: Theme.of(context).primaryColor,
                         width: 2,
                       ),
                     ),
@@ -33,7 +41,7 @@ class TransactionList extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        color: Colors.purple,
+                        color: Theme.of(context).primaryColor,
                       ),
                     )
                 ),
